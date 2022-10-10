@@ -4,14 +4,14 @@ STOP_WORDS = [
     'were', 'will', 'with'
 ]
 PUNCTUATION = [
-    '.', '!', '?', ',', '-', ':', ';', '"', "'",
+    '.', '!', '?', ',', "-", ':', ';', '"', "'"
 ]
 # Function used to sort words by frequency within a txt file
 def print_word_freq(file):
     # Open the file
-    with open(file, "r") as file:
+    with open(file, "r") as txt:
     # Read content within file
-        text_content = file.read()
+        text_content = txt.read()
     # Remove punctuation while content is a string
     for char in text_content:
         if char in PUNCTUATION:
@@ -20,10 +20,9 @@ def print_word_freq(file):
     text_content = text_content.split()
     # Convert everything to lowercase
     text_content = [word.lower() for word in text_content]
+    print(text_content)
     # Remove stop words from the list
-    for word in text_content:
-        if word in STOP_WORDS:
-            text_content.remove(word)
+    text_content = [word for word in text_content if word not in STOP_WORDS]
     # Create 2 empty dictionaries. One for * and one for integers
     word_dict = {}
     tally_dict = {}
@@ -38,9 +37,9 @@ def print_word_freq(file):
             tally_dict[word] = 1
     # Sort words from least to most frequent within content
     # Converts dictionary to tuples within a list
-    # Lambda function sorts tuple into value, key
+    # Lambda function sorts tuple by value in position [1]
     sorted_list = sorted(tally_dict.items(), key=lambda tuple: tuple[1])
-    # Convert list tuple back to dictionary with integer now as key, word as value
+    # Convert list tuple back to dictionary
     sorted_dict = dict(sorted_list)
     # For every word in content: print word | integer *
     for key in sorted_dict:
@@ -64,4 +63,3 @@ else:
 
 
 # Figure out why - is not removed
-# Figure out why i and a are not removed
