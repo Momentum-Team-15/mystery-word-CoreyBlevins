@@ -20,7 +20,6 @@ def print_word_freq(file):
     text_content = text_content.split()
     # Convert everything to lowercase
     text_content = [word.lower() for word in text_content]
-    print(text_content)
     # Remove stop words from the list
     text_content = [word for word in text_content if word not in STOP_WORDS]
     # Create 2 empty dictionaries. One for * and one for integers
